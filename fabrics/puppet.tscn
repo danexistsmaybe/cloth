@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyccf55lmsiqf"]
+
+[ext_resource type="Script" path="res://fabrics/scripts/puppet.gd" id="1_xwclb"]
+
+[node name="Puppet" type="Node2D"]
+script = ExtResource("1_xwclb")

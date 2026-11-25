@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kb2pvc5e42mp"]
+
+[ext_resource type="Script" path="res://fabrics/scripts/rope.gd" id="1_dwt6d"]
+
+[node name="Rope" type="Node2D"]
+script = ExtResource("1_dwt6d")

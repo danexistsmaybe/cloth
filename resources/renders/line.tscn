@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://by7t113ng5p1v"]
+
+[node name="Line" type="Line2D"]

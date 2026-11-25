@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtwm0f3xyccp0"]
+
+[ext_resource type="Script" path="res://playthings/scripts/grass_blade.gd" id="1_jbfau"]
+[ext_resource type="PackedScene" uid="uid://kb2pvc5e42mp" path="res://fabrics/rope.tscn" id="2_gqpc3"]
+[ext_resource type="PackedScene" uid="uid://dpajh47au1736" path="res://resources/renders/grass_resource.tscn" id="3_48l6b"]
+
+[node name="GrassBlade" type="Node2D"]
+script = ExtResource("1_jbfau")
+
+[node name="Rope" parent="." instance=ExtResource("2_gqpc3")]
+N = 5
+line_resource = ExtResource("3_48l6b")
+rotation_constraint = 2.827
+
+[node name="Line2D" type="Line2D" parent="Rope"]
+points = PackedVector2Array(0, 0, -1, -28)

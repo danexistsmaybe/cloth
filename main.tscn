@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj4ghtxh7aor8"]
+
+[ext_resource type="Script" path="res://utility/main.gd" id="1_702sd"]
+[ext_resource type="Texture2D" uid="uid://ccalvgylcqcyo" path="res://icon.svg" id="2_rlfmn"]
+[ext_resource type="Shader" path="res://resources/shaders/dither.gdshader" id="9_md4x7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xox2j"]
+shader = ExtResource("9_md4x7")
+shader_parameter/dither_color = Vector3(1, 1, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_702sd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -2
+position = Vector2(6.00006, 4)
+scale = Vector2(16, 12.007)
+texture = ExtResource("2_rlfmn")
+
+[node name="foreground" type="Node2D" parent="."]
+
+[node name="dither" type="Sprite2D" parent="."]
+visible = false
+z_index = 5
+material = SubResource("ShaderMaterial_xox2j")
+position = Vector2(20.0001, 8.00006)
+scale = Vector2(15, 8.633)
+texture = ExtResource("2_rlfmn")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckbqfj51ck32m"]
+
+[ext_resource type="Script" path="res://archive/rope.gd" id="1_u3vxg"]
+
+[node name="Rope" type="Node2D"]
+
+[node name="Line" type="Line2D" parent="."]
+top_level = true
+joint_mode = 2
+begin_cap_mode = 1
+script = ExtResource("1_u3vxg")

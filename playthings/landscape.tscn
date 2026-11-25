@@ -1,0 +1,183 @@
+[gd_scene load_steps=15 format=3 uid="uid://0vuwi1hfv2ex"]
+
+[ext_resource type="Shader" path="res://resources/shaders/gradient.gdshader" id="1_50yqt"]
+[ext_resource type="Texture2D" uid="uid://ccalvgylcqcyo" path="res://icon.svg" id="1_k2t3k"]
+[ext_resource type="PackedScene" uid="uid://dyccf55lmsiqf" path="res://fabrics/puppet.tscn" id="2_eceqp"]
+[ext_resource type="Script" path="res://fabrics/scripts/surface.gd" id="3_ahafj"]
+[ext_resource type="Script" path="res://fabrics/scripts/soft_body.gd" id="4_msw2q"]
+[ext_resource type="PackedScene" uid="uid://dtwm0f3xyccp0" path="res://playthings/grass_blade.tscn" id="5_v5ine"]
+[ext_resource type="Script" path="res://playthings/scripts/bonk.gd" id="6_6m1o6"]
+[ext_resource type="PackedScene" uid="uid://cyvph6b3bsd6g" path="res://fabrics/handle.tscn" id="6_it1yw"]
+[ext_resource type="PackedScene" uid="uid://be4r83ga2h3x5" path="res://fabrics/sprite.tscn" id="7_v0n0u"]
+[ext_resource type="Script" path="res://fabrics/scripts/hard_body.gd" id="9_d4gig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpg8r"]
+shader = ExtResource("1_50yqt")
+shader_parameter/color1 = Color(0.254902, 0.509804, 1, 1)
+shader_parameter/color2 = Color(0.439216, 0.709804, 1, 1)
+shader_parameter/direction = 4.939
+shader_parameter/linear_scale = 1.0
+shader_parameter/exp_scale = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3k50n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eefll"]
+size = Vector2(1162.5, 82.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esjsx"]
+shader = ExtResource("1_50yqt")
+shader_parameter/color1 = Color(0.203922, 0.141176, 0.0313726, 1)
+shader_parameter/color2 = Color(0.431373, 0.317647, 0.0980392, 1)
+shader_parameter/direction = 4.798
+shader_parameter/linear_scale = 1.0
+shader_parameter/exp_scale = 1.0
+
+[node name="Landscape" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -10
+material = SubResource("ShaderMaterial_xpg8r")
+position = Vector2(6.00006, 4)
+scale = Vector2(16, 12.007)
+texture = ExtResource("1_k2t3k")
+
+[node name="foreground" type="Node2D" parent="."]
+
+[node name="Puppet" parent="foreground" instance=ExtResource("2_eceqp")]
+debug_particle_physics = null
+
+[node name="Grass" type="Node2D" parent="foreground/Puppet"]
+script = ExtResource("4_msw2q")
+
+[node name="GrassBlade" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(5, 244)
+
+[node name="GrassBlade2" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(51, 254)
+
+[node name="GrassBlade3" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(29, 255)
+
+[node name="GrassBlade4" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-36, 248)
+
+[node name="GrassBlade5" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-49, 262)
+
+[node name="GrassBlade6" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-88, 244)
+
+[node name="GrassBlade7" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-67, 254)
+
+[node name="GrassBlade8" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-11, 255)
+
+[node name="GrassBlade9" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-23, 250)
+
+[node name="GrassBlade10" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-30, 266)
+
+[node name="GrassBlade11" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-61, 267)
+
+[node name="GrassBlade12" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-79, 255)
+
+[node name="GrassBlade13" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-88, 263)
+
+[node name="GrassBlade14" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-122, 253)
+
+[node name="GrassBlade15" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-108, 245)
+
+[node name="GrassBlade16" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-98, 257)
+
+[node name="GrassBlade17" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-113, 267)
+
+[node name="GrassBlade18" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-4, 261)
+
+[node name="GrassBlade19" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(11, 256)
+
+[node name="GrassBlade20" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(20, 268)
+
+[node name="GrassBlade21" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(21, 250)
+
+[node name="GrassBlade22" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(37, 267)
+
+[node name="GrassBlade23" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(43, 250)
+
+[node name="GrassBlade24" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-45, 252)
+
+[node name="GrassBlade25" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-57, 258)
+
+[node name="GrassBlade26" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-17, 241)
+
+[node name="GrassBlade27" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-76, 240)
+
+[node name="GrassBlade28" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-118, 240)
+
+[node name="GrassBlade29" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-29, 242)
+
+[node name="GrassBlade30" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(34, 238)
+
+[node name="GrassBlade31" parent="foreground/Puppet/Grass" instance=ExtResource("5_v5ine")]
+position = Vector2(-55, 239)
+
+[node name="Bonk" type="Node2D" parent="foreground/Puppet"]
+script = ExtResource("6_6m1o6")
+
+[node name="Handle" parent="foreground/Puppet/Bonk" instance=ExtResource("6_it1yw")]
+
+[node name="Sprite" parent="foreground/Puppet/Bonk/Handle" instance=ExtResource("7_v0n0u")]
+
+[node name="Sprite2D" type="Sprite2D" parent="foreground/Puppet/Bonk/Handle/Sprite"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_k2t3k")
+
+[node name="Body" type="Node2D" parent="foreground/Puppet/Bonk/Handle"]
+script = ExtResource("9_d4gig")
+
+[node name="Hitbox" type="StaticBody2D" parent="foreground/Puppet/Bonk/Handle/Body"]
+collision_layer = 8
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreground/Puppet/Bonk/Handle/Body/Hitbox"]
+shape = SubResource("RectangleShape2D_3k50n")
+
+[node name="Ground" type="Node2D" parent="foreground"]
+z_index = -5
+position = Vector2(4, 285)
+script = ExtResource("3_ahafj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="foreground/Ground"]
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="foreground/Ground/StaticBody2D"]
+shape = SubResource("RectangleShape2D_eefll")
+
+[node name="Sprite2D" type="Sprite2D" parent="foreground/Ground"]
+material = SubResource("ShaderMaterial_esjsx")
+scale = Vector2(9.082, 0.645)
+texture = ExtResource("1_k2t3k")

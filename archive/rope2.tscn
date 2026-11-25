@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://batg350fpxf3c"]
+
+[ext_resource type="Script" path="res://archive/rope2.gd" id="1_djecv"]
+
+[node name="Rope" type="Node2D"]
+
+[node name="Line" type="Line2D" parent="."]
+top_level = true
+joint_mode = 2
+begin_cap_mode = 1
+script = ExtResource("1_djecv")
+edge_size = 2.0
+rope_length = 100
+gravity = null

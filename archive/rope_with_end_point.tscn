@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://348fmq2gy8se"]
+
+[ext_resource type="Script" path="res://archive/rope_with_end_point.gd" id="1_qx5qg"]
+
+[node name="RopeWithEndPoint" type="Node2D"]
+script = ExtResource("1_qx5qg")
+
+[node name="Line" type="Line2D" parent="."]
+top_level = true
+joint_mode = 2
+begin_cap_mode = 1
