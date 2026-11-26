@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6wc1h7spoma2"]
 
-[ext_resource type="Script" path="res://fabrics/scripts/glue.gd" id="1_bw75x"]
+[ext_resource type="Script" path="res://archive/glue.gd" id="1_bw75x"]
 
 [node name="Glue" type="Line2D"]
 width = 1.0

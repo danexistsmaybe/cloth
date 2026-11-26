@@ -39,6 +39,7 @@ func _ready():
 
 func _draw():
     if debug_particle_physics:
+        draw_set_transform_matrix(global_transform.affine_inverse())    # particle positions are global
         for p in particles:
             draw_line(p.position, p.position + 4*p.velocity, Color.BLUE, 3.)
             draw_line(p.position, p.position + p.gravity + p.external_force + p.impulse, Color.RED, 1.)

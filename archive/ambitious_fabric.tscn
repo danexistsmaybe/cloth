@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dybiy4282g6em"]
 
-[ext_resource type="Script" path="res://fabrics/scripts/ambitious_fabric.gd" id="1_e30al"]
+[ext_resource type="Script" path="res://archive/ambitious_fabric.gd" id="1_e30al"]
 [ext_resource type="PackedScene" uid="uid://by7t113ng5p1v" path="res://resources/renders/line.tscn" id="2_g05mh"]
 
 [node name="AmbitiousFabric" type="Node2D"]

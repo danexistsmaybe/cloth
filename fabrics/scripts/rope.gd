@@ -52,10 +52,13 @@ func _ready():
             add_constraint([constraint.MIN_ANGLE, particles[i-1], particles[i], particles[i+1], rotation_constraint])
     
     # Editor options
+    # Placement using line2d as a marker:
     if has_node("Line2D"):
         var line = get_node("Line2D")
+        var start : Vector2 = line.to_global(line.points[0])
+        var end : Vector2 = line.to_global(line.points[-1])
         for p in range(N):
-            particles[p].position = line.points[0] + (float(p)/(N-1))*(line.points[-1] - line.points[0])
+            particles[p].position = start.lerp(end, float(p)/(N-1))
         line.queue_free()
 
     line = Line2D.new() if line_resource == null else line_resource.instantiate()
@@ -63,7 +66,7 @@ func _ready():
         width = line.width
         color = line.default_color
     add_child(line)
-    line.global_position = Vector2.ZERO
+    line.global_transform = Transform2D.IDENTITY
     
 
 func _draw():
