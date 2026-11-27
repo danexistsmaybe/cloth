@@ -15,7 +15,6 @@ Bodies are assembled by nesting nodes. For a draggable rope:
 Puppet
 └── Handle
     └── Rope
-        └── Line2D      (marks where the rope starts and ends)
 ```
 
 Godot calls `_ready` on children before their parents. Each SoftBody uses this to take its children's particles and constraints:

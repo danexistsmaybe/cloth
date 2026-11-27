@@ -1,8 +1,9 @@
 extends SoftBody
 
 # = Parameters = 
-@export var N:int = 10
 @export var line_resource : PackedScene
+# Starting shape, in local coordinates: one particle per point. Edit with the Rope Editor plugin
+@export var points : PackedVector2Array = PackedVector2Array([Vector2(0, 0), Vector2(0, 100)])
 
 # Constraints:
 @export_group("Constraints")
@@ -29,38 +30,38 @@ extends SoftBody
 @export var interpolate_factor:int = 5                  # the number of interpolated points (including the real point) to render
 
 
+# Number of particles, taken from points
+var N : int
+
 # Rendering
 var line : Line2D
  
 
 func _ready():
-    # Create points
+    # Create particles, one at each point
+    N = points.size()
+    assert(N >= 2, "A rope needs at least two points")
     add_n_particles(N, damp, gravity)
+    for p in range(N):
+        particles[p].position = to_global(points[p])
 
     # Create distance constraints
     for i in range(N-1):
-        if min_distance_constraint == max_distance_constraint:
-            add_constraint([constraint.EXACT_DISTANCE, particles[i], particles[i+1], max_distance_constraint])
-        elif min_distance_constraint == 0:
-            add_constraint([constraint.MAX_DISTANCE, particles[i], particles[i+1], max_distance_constraint])
+        var distances : Array = get_segment_constraints(i)
+        var minimum : float = distances[0]
+        var maximum : float = distances[1]
+        if minimum == maximum:
+            add_constraint([constraint.EXACT_DISTANCE, particles[i], particles[i+1], maximum])
+        elif minimum == 0:
+            add_constraint([constraint.MAX_DISTANCE, particles[i], particles[i+1], maximum])
         else:
-            add_constraint([constraint.MIN_MAX_DISTANCE, particles[i], particles[i+1], min_distance_constraint, max_distance_constraint])
+            add_constraint([constraint.MIN_MAX_DISTANCE, particles[i], particles[i+1], minimum, maximum])
     
     # Create rotation constraints
     if rotation_constraint:
         for i in range(1,N-1):
             add_constraint([constraint.MIN_ANGLE, particles[i-1], particles[i], particles[i+1], rotation_constraint])
     
-    # Editor options
-    # Placement using line2d as a marker:
-    if has_node("Line2D"):
-        var line = get_node("Line2D")
-        var start : Vector2 = line.to_global(line.points[0])
-        var end : Vector2 = line.to_global(line.points[-1])
-        for p in range(N):
-            particles[p].position = start.lerp(end, float(p)/(N-1))
-        line.queue_free()
-
     line = Line2D.new() if line_resource == null else line_resource.instantiate()
     if line_resource != null:
         width = line.width
@@ -68,6 +69,11 @@ func _ready():
     add_child(line)
     line.global_transform = Transform2D.IDENTITY
     
+
+# Override to build constraints differently
+func get_segment_constraints(_i:int) -> Array:
+    return [min_distance_constraint, max_distance_constraint]
+
 
 func _draw():
     pass
@@ -88,9 +94,9 @@ func _physics_process(_delta):
 func render_line():
     line.width = width
     line.default_color = color
-    var points = get_points_to_render()
-    #for p in points: p *= 0
-    line.points = points
+    var render_points = get_points_to_render()
+    #for p in render_points: p *= 0
+    line.points = render_points
  
 func polygonize(line:PackedVector2Array):
     pass

@@ -19,6 +19,18 @@ There is one page per script in `fabrics/scripts/`.
 | [HardBody](fabrics/hard_body.md) | One particle that moves a physics hitbox |
 | [Surface](fabrics/surface.md) | Sets how bouncy a collider is |
 
+## Cloths
+
+There is one page per script in `cloths/scripts/`.
+
+| Cloth | What it is |
+| --- | --- |
+| [GrassBlade](cloths/grass_blade.md) | A tapered rope rooted in the ground |
+
+## Tools
+
+- [Rope Editor plugin](rope_editor.md): edit rope points in the editor (in progress)
+
 ## Keeping these pages up to date
 
 - A change to a script in `fabrics/scripts/` updates its page in the same piece of work.

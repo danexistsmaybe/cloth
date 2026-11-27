@@ -7,19 +7,29 @@ Script: `fabrics/scripts/rope.gd`. Scene: `fabrics/rope.tscn`. Inherits [SoftBod
 ## Using it
 
 1. Put the rope somewhere under a [Puppet](puppet.md).
-2. Give it a child `Line2D` named exactly `Line2D`. Its first and last points set where the rope starts and ends. They follow the guide, the rope and its parents, so what you see in the editor is where the rope starts.
-3. Set `max_distance_constraint` and `min_distance_constraint` to the segment length you want. The default of 1 pixel is almost never right. To start at rest, use the guide line's length on screen (including any scaling) divided by `N - 1`.
+2. Place its `points` in the 2D viewport with the [Rope Editor plugin](../rope_editor.md). There is one particle per point, starting where the point is. They follow the rope's and its parents' position, rotation and scale.
+3. Set `max_distance_constraint` and `min_distance_constraint` to the segment length you want. The default of 1 pixel is almost never right, and the spacing of your points does not change it.
 
-**The `Line2D` guide is required.** Without it all particles start at the same point and the whole rope becomes `NaN`. The exceptions are if your code moves the particles apart before the first physics tick, or if `min_distance_constraint` is 0.
+A rope needs at least two points. Moving the rope node while the game runs does not move the rope.
 
-The guide is deleted once the rope has read it. Moving the rope node while the game runs does not move the rope. Scaling a node spreads out the starting points but not the segment lengths, so the rope pulls back to its set length.
+## Segment constraints
+
+`get_segment_constraints(i)` returns `[minimum, maximum]` for the segment from particle `i` to `i + 1`. By default every segment gets `min_distance_constraint` and `max_distance_constraint`. A subclass can override it, for example to keep the drawn spacing:
+
+```gdscript
+func get_segment_constraints(i:int) -> Array:
+    var length := to_global(points[i]).distance_to(to_global(points[i+1]))
+    return [length, length]
+```
+
+It is called once per segment, when the rope is created.
 
 ## Settings
 
 | Setting | Default | Meaning |
 | --- | --- | --- |
-| `N` | 10 | Number of particles |
 | `line_resource` | none | A `Line2D` scene that styles the rope, such as `resources/renders/grass_resource.tscn` |
+| `points` | (0, 0), (0, 100) | Starting shape in local coordinates, one particle per point. The particle count `N` is taken from it |
 | `max_distance_constraint` | 1 | Longest a segment can be |
 | `min_distance_constraint` | 1 | Shortest a segment can be. Equal to max gives a fixed length; 0 gives no minimum |
 | `rotation_constraint` | `PI/2` | Narrowest angle between segments, in radians. 0 turns it off |
@@ -28,7 +38,7 @@ The guide is deleted once the rope has read it. Moving the rope node while the g
 | `width` | 8 | Line width. Ignored when `line_resource` is set |
 | `color` | white | Line colour. Ignored when `line_resource` is set |
 | `interpolate_catmull_rom` | `true` | Smooth curve through every particle |
-| `interpolate_b_spline` | `false` | Smoother curve that only passes near particles. Only used when Catmull-Rom is off; needs `N` of at least 4 |
+| `interpolate_b_spline` | `false` | Smoother curve that only passes near particles. Only used when Catmull-Rom is off; needs at least 4 points |
 | `interpolate_factor` | 5 | Drawn points per segment |
 | `invisible` | `false` | Currently has no effect |
 
@@ -36,7 +46,7 @@ The guide is deleted once the rope has read it. Moving the rope node while the g
 
 ## Known issues
 
-- No guide line means `NaN`, with no error message.
+- Two points in the same place give `NaN` if their segment has a fixed length.
 - `invisible` does nothing.
 - A style with a gradient shows the gradient and ignores `color`.
 - The B-spline curve stops short of both ends of the rope.

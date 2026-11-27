@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://wv2cbj0nt87s"]
+
+[ext_resource type="Shader" path="res://resources/shaders/textures/ground.gdshader" id="1_ground"]
+[ext_resource type="PackedScene" uid="uid://dyccf55lmsiqf" path="res://fabrics/puppet.tscn" id="2_puppet"]
+[ext_resource type="PackedScene" path="res://cloths/grass_blade.tscn" id="3_grass"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ground"]
+shader = ExtResource("1_ground")
+shader_parameter/top_color = Color(0.55, 0.36, 0.2, 1)
+shader_parameter/deep_color = Color(0.09, 0.05, 0.03, 1)
+shader_parameter/fade_depth = 80.0
+shader_parameter/noise_strength = 0.25
+shader_parameter/grain_size = 2.0
+
+[node name="LandscapeDemo" type="Node2D"]
+
+[node name="Puppet" parent="." instance=ExtResource("2_puppet")]
+
+[node name="GrassBlade" parent="Puppet" instance=ExtResource("3_grass")]
+position = Vector2(469, 315)
+points = PackedVector2Array(489.243, 223.862, 0.242554, -46.1377, -468.757, -313.138)
+
+[node name="Ground" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_ground")
+position = Vector2(0, 390)
+polygon = PackedVector2Array(0, 0, 480, 0, 960, 0, 960, 150, 0, 150)
