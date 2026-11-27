@@ -18,7 +18,7 @@ shader_parameter/grain_size = 2.0
 
 [node name="GrassBlade" parent="Puppet" instance=ExtResource("3_grass")]
 position = Vector2(469, 315)
-points = PackedVector2Array(489.243, 223.862, 0.242554, -46.1377, -468.757, -313.138)
+points = PackedVector2Array(354.397, 83.348, 353.603, 65.2913, 352.809, 47.2346, 352.016, 29.178, 351.222, 11.1213)
 
 [node name="Ground" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_ground")

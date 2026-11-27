@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bg5y3tvpcllag"]
+
+[node name="Connector" type="Line2D"]
+top_level = true
